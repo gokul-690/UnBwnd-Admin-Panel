@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #155E75;
+  --color-primary-light: rgba(21, 94, 117, 0.15);
+  --color-primary-dark: #0e3f4f;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Premium aesthetics settings */
+html, body {
+  @apply antialiased text-gray-900 bg-[#FCFCFD] dark:bg-[#09090b] dark:text-gray-100;
+  font-family: var(--font-sans);
+}
+
+/* Global smooth transition for theme mode changes */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.glass-panel {
+  @apply bg-white dark:bg-[#121214]/95 border border-gray-200 dark:border-gray-800/60 shadow-sm transition-colors duration-300;
+}
+
+.glass-card {
+  @apply bg-white dark:bg-[#121214] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900/50 transition-all duration-300;
+}
+
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
