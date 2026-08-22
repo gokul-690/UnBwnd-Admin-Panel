@@ -21,7 +21,7 @@ export default function Login() {
     setError('');
     
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/admin/rbac/login', {
+      const response = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/rbac/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,4 +150,5 @@ export default function Login() {
     </div>
   );
 }
+
 

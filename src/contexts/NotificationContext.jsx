@@ -10,7 +10,7 @@ export function NotificationProvider({ children }) {
 
   const fetchNotifications = useCallback(async () => {
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/admin/notifications', { cache: 'no-store' });
+      const res = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/notifications', { cache: 'no-store' });
       if (!res.ok) return;
       const data = await res.json();
       if (!data.ok || !data.notifications) return;
@@ -71,4 +71,5 @@ export function useNotifications() {
   if (!ctx) throw new Error('useNotifications must be used within NotificationProvider');
   return ctx;
 }
+
 

@@ -51,7 +51,7 @@ export default function UserManagement() {
   const fetchUsers = async (silent = false) => {
     if (!silent) setIsLoading(true);
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/admin/users', { cache: 'no-store' });
+      const res = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/users', { cache: 'no-store' });
       if (!res.ok) throw new Error('Failed to fetch users');
       const data = await res.json();
       if (data.ok && data.users) { setUsers(formatUsers(data)); setError(null); }
@@ -258,7 +258,7 @@ export default function UserManagement() {
                   onClick={async () => {
                     setIsSubmitting(true);
                     try {
-                      await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/${editingUser.id}`, {
+                      await fetch(`${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/users/${editingUser.id}`, {
                         method: 'PUT', headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ display_name: editingUser.name, email: editingUser.email, profile_type: editingUser.role === 'Admin' ? 'admin' : 'user' }),
                       });
@@ -284,7 +284,7 @@ export default function UserManagement() {
           setBanningUser(null);
           setIsLoading(true);
           try {
-            await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/${id}`, { method: 'DELETE' });
+            await fetch(`${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/users/${id}`, { method: 'DELETE' });
             fetchUsers();
           } catch (e) { 
             console.error(e); 
@@ -298,5 +298,6 @@ export default function UserManagement() {
     </div>
   );
 }
+
 
 

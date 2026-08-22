@@ -29,8 +29,8 @@ export default function Gamification() {
     try {
       setLoading(true);
       const [badgesRes, usersRes] = await Promise.all([
-        fetch(import.meta.env.VITE_API_URL + '/api/admin/badges'),
-        fetch(import.meta.env.VITE_API_URL + '/api/admin/users')
+        fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/badges'),
+        fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/users')
       ]);
       const badgesData = await badgesRes.json();
       const usersData = await usersRes.json();
@@ -83,8 +83,8 @@ export default function Gamification() {
     setIsSaving(true);
     try {
       const url = isCreatingBadge 
-        ? import.meta.env.VITE_API_URL + '/api/admin/badges' 
-        : `${import.meta.env.VITE_API_URL}/api/admin/badges/${editingBadge.id}`;
+        ? (import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/badges' 
+        : `${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/badges/${editingBadge.id}`;
         
       const res = await fetch(url, {
         method: isCreatingBadge ? 'POST' : 'PUT',
@@ -335,4 +335,5 @@ export default function Gamification() {
     </div>
   );
 }
+
 

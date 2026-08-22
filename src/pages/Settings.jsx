@@ -18,7 +18,7 @@ export default function Settings() {
 
   const fetchMaintenanceMode = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/admin/settings/maintenance', {
+      const response = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/settings/maintenance', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ export default function Settings() {
     const newValue = !maintenanceMode;
     
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/admin/settings/maintenance', {
+      const response = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/settings/maintenance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -174,4 +174,5 @@ export default function Settings() {
     </div>
   );
 }
+
 

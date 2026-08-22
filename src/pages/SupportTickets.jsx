@@ -19,7 +19,7 @@ export default function SupportTickets() {
     setLoading(true);
     try {
       // Assuming your FastAPI backend is running on port 8001
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/admin/tickets');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/tickets');
       if (res.ok) {
         const data = await res.json();
         setTickets(data);
@@ -40,7 +40,7 @@ export default function SupportTickets() {
 
     setSendingReply(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/tickets/${ticketId}/reply`, {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/tickets/${ticketId}/reply`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ replyMessage })
@@ -164,5 +164,6 @@ export default function SupportTickets() {
     </div>
   );
 }
+
 
 

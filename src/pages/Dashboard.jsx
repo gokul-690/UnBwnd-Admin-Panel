@@ -33,8 +33,8 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = () => {
       Promise.all([
-        fetch(import.meta.env.VITE_API_URL + '/api/admin/dashboard', { cache: 'no-store' }).then(r => r.json()),
-        fetch(import.meta.env.VITE_API_URL + '/api/admin/sidebar-stats', { cache: 'no-store' }).then(r => r.json()),
+        fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/dashboard', { cache: 'no-store' }).then(r => r.json()),
+        fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/sidebar-stats', { cache: 'no-store' }).then(r => r.json()),
       ]).then(([dashboardRes, statsRes]) => {
         if (dashboardRes.ok) setData(dashboardRes);
         if (statsRes.ok) setStats(statsRes.stats);
@@ -186,4 +186,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
 

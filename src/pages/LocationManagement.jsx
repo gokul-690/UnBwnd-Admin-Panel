@@ -185,7 +185,7 @@ export default function LocationManagement() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(import.meta.env.VITE_API_URL + '/api/admin/places', { cache: 'no-store' })
+      fetch((import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com') + '/api/admin/places', { cache: 'no-store' })
         .then(res => res.json())
         .then(data => {
           if (data.ok) setPlaces(data.places || []);
@@ -465,4 +465,5 @@ export default function LocationManagement() {
     </div>
   );
 }
+
 

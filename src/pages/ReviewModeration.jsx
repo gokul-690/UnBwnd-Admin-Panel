@@ -13,7 +13,7 @@ export default function ReviewModeration() {
 
   const fetchData = (tab = activeTab) => {
     setIsLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/api/admin/reviews?status=${tab}`, { cache: 'no-store' })
+    fetch(`${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/reviews?status=${tab}`, { cache: 'no-store' })
       .then(res => res.json())
       .then(data => { 
         if (data.ok) setReviews(data.reviews); 
@@ -34,7 +34,7 @@ export default function ReviewModeration() {
   const handleAction = async (id, action) => {
     setProcessing(p => ({ ...p, [id]: true }));
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/reviews/${id}/${action}`, { method: 'PUT' });
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || 'https://unbwnd-backend1.onrender.com')}/api/admin/reviews/${id}/${action}`, { method: 'PUT' });
       if (res.ok) {
         setReviews(r => r.filter(x => x.id !== id));
       }
@@ -168,5 +168,6 @@ export default function ReviewModeration() {
     </div>
   );
 }
+
 
 
