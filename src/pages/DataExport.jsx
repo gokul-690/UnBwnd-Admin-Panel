@@ -15,7 +15,7 @@ export default function DataExport() {
   const handleDownload = async (item) => {
     setDownloading(item.id);
     try {
-      const response = await fetch(`https://unbwnd-backned1.onrender.com${item.endpoint}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}${item.endpoint}`);
       if (!response.ok) throw new Error("Failed to download file");
 
       const blob = await response.blob();
@@ -82,3 +82,5 @@ export default function DataExport() {
     </div>
   );
 }
+
+

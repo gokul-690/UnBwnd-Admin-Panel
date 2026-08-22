@@ -19,7 +19,7 @@ export default function Notifications() {
     }
 
     try {
-      const res = await fetch('https://unbwnd-backned1.onrender.com/api/admin/push-notification', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/admin/push-notification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, body, audience })
@@ -138,3 +138,4 @@ export default function Notifications() {
     </div>
   );
 }
+

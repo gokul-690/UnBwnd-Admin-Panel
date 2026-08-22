@@ -26,7 +26,7 @@ export default function AdminRoles() {
 
   const fetchAdmins = async () => {
     try {
-      const response = await fetch('https://unbwnd-backned1.onrender.com/api/admin/rbac/users', {
+      const response = await fetch(import.meta.env.VITE_API_URL + '/api/admin/rbac/users', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -47,7 +47,7 @@ export default function AdminRoles() {
     setInviteLoading(true);
     
     try {
-      const response = await fetch('https://unbwnd-backned1.onrender.com/api/admin/rbac/invite', {
+      const response = await fetch(import.meta.env.VITE_API_URL + '/api/admin/rbac/invite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function AdminRoles() {
     setDeleteLoading(true);
     
     try {
-      const response = await fetch(`https://unbwnd-backned1.onrender.com/api/admin/rbac/users/${deleteId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/rbac/users/${deleteId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -260,3 +260,5 @@ export default function AdminRoles() {
     </div>
   );
 }
+
+

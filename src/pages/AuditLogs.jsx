@@ -77,7 +77,7 @@ export default function AuditLogs() {
     if (!silent) setIsLoading(true);
     else setRefreshing(true);
     try {
-      const res = await fetch('https://unbwnd-backned1.onrender.com/api/admin/audit-logs', { cache: 'no-store' });
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/admin/audit-logs', { cache: 'no-store' });
       const data = await res.json();
       if (data.ok) { setLogs(data.logs); setLastRefreshed(new Date()); }
     } catch (err) {
@@ -301,3 +301,4 @@ export default function AuditLogs() {
     </div>
   );
 }
+

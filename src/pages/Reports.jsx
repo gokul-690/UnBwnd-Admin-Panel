@@ -38,7 +38,7 @@ export default function Reports() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('https://unbwnd-backned1.onrender.com/api/admin/user-reports', { cache: 'no-store' })
+      fetch(import.meta.env.VITE_API_URL + '/api/admin/user-reports', { cache: 'no-store' })
         .then(res => res.json())
         .then(data => { if (data.ok) setReports(data.reports); setIsLoading(false); })
         .catch(err => { console.error(err); setIsLoading(false); });
@@ -131,3 +131,4 @@ export default function Reports() {
     </div>
   );
 }
+

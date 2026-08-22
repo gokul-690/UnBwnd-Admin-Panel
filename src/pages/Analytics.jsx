@@ -18,7 +18,7 @@ export default function Analytics() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('https://unbwnd-backned1.onrender.com/api/admin/analytics', { cache: 'no-store' })
+      fetch(import.meta.env.VITE_API_URL + '/api/admin/analytics', { cache: 'no-store' })
         .then(res => res.json())
         .then(d => { if (d.ok) setData(d); setIsLoading(false); })
         .catch(err => { console.error(err); setIsLoading(false); });
@@ -177,3 +177,4 @@ export default function Analytics() {
     </div>
   );
 }
+

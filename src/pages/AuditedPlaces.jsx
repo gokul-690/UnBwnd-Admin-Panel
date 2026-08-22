@@ -27,7 +27,7 @@ export default function AuditedPlaces() {
   useEffect(() => { _cached_isLoading = isLoading; }, [isLoading]);
 
   useEffect(() => {
-    fetch('https://unbwnd-backned1.onrender.com/api/admin/audited-places', { cache: 'no-store' })
+    fetch(import.meta.env.VITE_API_URL + '/api/admin/audited-places', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => { if (data.ok) setAudits(data.audits); setIsLoading(false); })
       .catch(err => { console.error('Failed to fetch audits:', err); setIsLoading(false); });
@@ -43,7 +43,7 @@ export default function AuditedPlaces() {
     const original = [...audits];
     setAudits(audits.filter(a => a.real_id !== audit.real_id));
     try {
-      await fetch(`https://unbwnd-backned1.onrender.com/api/admin/audited-places/${audit.real_id}/revoke`, { method: 'DELETE' });
+      await fetch(`${import.meta.env.VITE_API_URL}/api/admin/audited-places/${audit.real_id}/revoke`, { method: 'DELETE' });
     } catch (e) { console.error(e); setAudits(original); }
   };
 
@@ -226,3 +226,5 @@ export default function AuditedPlaces() {
     </div>
   );
 }
+
+
